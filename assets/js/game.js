@@ -26,8 +26,6 @@ var fight = function(enemyName) {
       // if yes (true), leave fight
       if (confirmSkip) {
         window.alert(playerName + ' has decided to skip this fight. Goodbye!');
-       // would you like to upgrade FIGHT or refill HEALTH?
-       // IF  yes
         // subtract money from playerMoney for skipping
         playerMoney = playerMoney - 10;
         console.log("playerMoney", playerMoney);
@@ -62,7 +60,7 @@ var fight = function(enemyName) {
 
     // check player's health
     if (playerHealth <= 0) {
-      window.alert(playerName + ' has died!');
+      window.alert(playerName + ' HAS BEEN OBLITORATED!');
       // leave while() loop if player is dead
       break;
     } else {
@@ -71,7 +69,14 @@ var fight = function(enemyName) {
   }
 };
 
-// fight each enemy-robot by looping over them and fighting them one at a time
+//function to start a new game
+var startGame = function() {
+  console.logdebugger();
+  //reset player stats
+  playerHealth = 0;
+  playerAttack = 10;
+  playerMoney = 10;
+  // fight each enemy-robot by looping over them and fighting them one at a time
 for (var i = 0; i < enemyNames.length; i++) {
   // if player is still alive, keep fighting
   if (playerHealth > 0) {
@@ -96,3 +101,26 @@ for (var i = 0; i < enemyNames.length; i++) {
     break;
   }
 }
+// PLAY AGAIN by calling the function agia
+endGame();
+}
+
+// function to end entire game
+var endGame = function() {
+  window.alert("GAME OVER!!");
+  if (playerHealth > 0) {
+    window.alert("I GUESS YOU DID ALRIGHT. YOU SURVIVED, AT LEAST. YOU NOW HAVE " + playerMoney + "!");
+  }
+  else{
+    window.alert("YOU LOSE! YOU ENDED WITH " + playerMoney + ". SAD!");
+  };
+  var playAgainConfirm = window.confirm("GET UP AND FIGHT? OR COWER IN FEAR");
+  if (playAgainConfirm) {
+    startGame();
+  }
+  else {
+    window.alert("GOOD BYE" + playerName);
+  }
+}
+// call the startGame function to start the game
+startGame();
