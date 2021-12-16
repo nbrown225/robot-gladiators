@@ -4,9 +4,16 @@ var playerAttack = 10;
 var playerMoney = 10;
 
 var enemyNames = ['Roborto', 'Amy Android', 'Robo Trumble'];
-var enemyHealth = 50;
+var enemyHealth = randomNumber(40, 60);
 var enemyAttack = 12;
 
+// RANDOM NUMBER GENERATOR
+// when calling later, swap out min and max with desired num range
+var randomNumber = function(min, max){
+  var value = Math.floor(Math.random() * (max - min + 1) + min)
+
+  return value;
+}
 console.log(enemyNames);
 console.log(enemyNames.length);
 console.log(enemyNames[0]);
@@ -29,14 +36,16 @@ var fight = function(enemyName) {
        // would you like to upgrade FIGHT or refill HEALTH?
        // IF  yes
         // subtract money from playerMoney for skipping
-        playerMoney = playerMoney - 10;
+        playerMoney = Math.max(playerMoney - 10);
         console.log("playerMoney", playerMoney);
         break;
       }
     }
 
     // remove enemy's health by subtracting the amount set in the playerAttack variable
-    enemyHealth = enemyHealth - playerAttack;
+    // genereate random damage value based on player attack
+    var damage = randomNumber(playerAttack - 5, playerAttack);
+    enemyHealth = Math.max(0, enemyHealth = damage);
     console.log(
       playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
     );
@@ -55,7 +64,8 @@ var fight = function(enemyName) {
     }
 
     // remove players's health by subtracting the amount set in the enemyAttack variable
-    playerHealth = playerHealth - enemyAttack;
+      var damage = randomNumber(enemyAttack - 5, enemyAttack);
+      playerHealth = Math.max(0, playerHealth - damage)
     console.log(
       enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.'
     );
@@ -82,7 +92,7 @@ for (var i = 0; i < enemyNames.length; i++) {
     var pickedEnemyName = enemyNames[i];
 
     // reset enemyHealth before starting new fight
-    enemyHealth = 50;
+    enemyHealth = Math.floor(Math.random() * 11) + 40;
 
     // use debugger to pause script from running and check what's going on at that moment in the code
     // debugger;
@@ -96,3 +106,4 @@ for (var i = 0; i < enemyNames.length; i++) {
     break;
   }
 }
+console.log(Math);
