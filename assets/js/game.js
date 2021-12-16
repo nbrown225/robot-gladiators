@@ -4,9 +4,24 @@ var playerAttack = 10;
 var playerMoney = 10;
 
 var enemyNames = ['Roborto', 'Amy Android', 'Robo Trumble'];
-var enemyHealth = 50;
+var enemyHealth = randomNumber(40, 60);
 var enemyAttack = 12;
 
+<<<<<<< HEAD
+=======
+// RANDOM NUMBER GENERATOR
+// when calling later, swap out min and max with desired num range
+var randomNumber = function(min, max){
+  var value = Math.floor(Math.random() * (max - min + 1) + min)
+
+  return value;
+}
+console.log(enemyNames);
+console.log(enemyNames.length);
+console.log(enemyNames[0]);
+console.log(enemyNames[3]);
+
+>>>>>>> feature/random
 // fight function (now with parameter for enemy's name)
 var fight = function(enemyName) {
   while (playerHealth > 0 && enemyHealth > 0) {
@@ -22,14 +37,21 @@ var fight = function(enemyName) {
       if (confirmSkip) {
         window.alert(playerName + ' has decided to skip this fight. Goodbye!');
         // subtract money from playerMoney for skipping
+<<<<<<< HEAD
         playerMoney = playerMoney - 10;
         console.log("playerMoney", playerMoney)
+=======
+        playerMoney = Math.max(playerMoney - 10);
+        console.log("playerMoney", playerMoney);
+>>>>>>> feature/random
         break;
       }
     }
 
     // remove enemy's health by subtracting the amount set in the playerAttack variable
-    enemyHealth = enemyHealth - playerAttack;
+    // genereate random damage value based on player attack
+    var damage = randomNumber(playerAttack - 5, playerAttack);
+    enemyHealth = Math.max(0, enemyHealth = damage);
     console.log(
       playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
     );
@@ -48,7 +70,8 @@ var fight = function(enemyName) {
     }
 
     // remove players's health by subtracting the amount set in the enemyAttack variable
-    playerHealth = playerHealth - enemyAttack;
+      var damage = randomNumber(enemyAttack - 5, enemyAttack);
+      playerHealth = Math.max(0, playerHealth - damage)
     console.log(
       enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.'
     );
@@ -113,12 +136,17 @@ var startGame = function() {
 var endGame = function() {
   window.alert("The game has now ended. Let's see how you did!");
 
+<<<<<<< HEAD
   // if player is still alive, player wins!
   if (playerHealth > 0) {
     window.alert("Great job, you've survived the game! You now have a score of " + playerMoney + '.');
   } else {
     window.alert("You've lost your robot in battle!");
   }
+=======
+    // reset enemyHealth before starting new fight
+    enemyHealth = Math.floor(Math.random() * 11) + 40;
+>>>>>>> feature/random
 
   // ask player if they'd like to play again
   var playAgainConfirm = window.confirm('Would you like to play again?');
@@ -178,7 +206,12 @@ var shop = function() {
       shop();
       break;
   }
+<<<<<<< HEAD
 };
 
 // start first game when page loads
 startGame();
+=======
+}
+console.log(Math);
+>>>>>>> feature/random
