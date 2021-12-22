@@ -169,9 +169,19 @@ var shop = function() {
 
 /* GAME INFORMATION / VARIABLES */
 
+// function to set name and prevent null
+var getPlayerName = function() {
+  var name = ""; // this catches null or empty value 
+  while (name === "" || name === null) {
+    name = prompt("What is your robot's name?");
+  }
+  console.log("Your robot's name is " + name);
+  return name;
+};
+
 // player information
 var playerInfo = {
-  name: window.prompt("What is your robot's name?"),
+  name: getPlayerName(), //use this function to get the name
   health: 100,
   attack: 10,
   money: 10,
